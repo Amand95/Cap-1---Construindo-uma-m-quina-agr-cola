@@ -6,7 +6,7 @@ __pycache__/
 # SQLite database files
 *.db
 
-# Environment variables
+# Environment variables and virtual environments
 .env
 .venv/
 env/
@@ -24,12 +24,15 @@ venv/
 *.tmp
 *.bak
 
-# Python virtual environment folders
-env/
-venv/
-
 # MacOS files
 .DS_Store
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+
+# Python cache folders
+__pycache__/
+
+# Build directories (if usando outros build systems)
+build/
+dist/
