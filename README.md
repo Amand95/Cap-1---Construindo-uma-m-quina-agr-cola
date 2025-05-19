@@ -6,16 +6,16 @@ Este projeto tem como objetivo criar a modelagem de um banco de dados relacional
 
 ## 👩‍💻 Alunos
 
-- **Nome:** Amanda Silva  
-- **RM:** 553038
-- - **Nome:** Amanda Silva  
-- **RM:** 553038
-- - **Nome:** Amanda Silva  
-- **RM:** 553038
-- - **Nome:** Amanda Silva  
-- **RM:** 553038
-- - **Nome:** Amanda Silva  
-- **RM:** 553038
+- **Nome:** Amanda da Silva Barros
+- **RM:** 564759
+- - **Nome:** Bruno Gambarini João Victor Cope Moreira  
+- **RM:** 561517
+- - **Nome:** João Victor Cope Moreira 
+- **RM:** 565958
+- - **Nome:** Karina Jesus dos Santos  
+- **RM:** 559268
+- - **Nome:** Lucas Fagundes  
+- **RM:** 565179
 - **Repositório GitHub:** [Cap-1---Construindo-uma-maquina-agricola](https://github.com/Amand95/Cap-1---Construindo-uma-m-quina-agr-cola)
 
 ---
