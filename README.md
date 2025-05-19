@@ -1,40 +1,77 @@
-# 🌾 Entrega 1 – Sistema de Sensores com ESP32
+# 🌱 Capítulo 1 – Construindo uma Máquina Agrícola Inteligente
 
-## 📘 Descrição
-Este projeto simula um sistema de irrigação inteligente para plantações, utilizando sensores conectados a um microcontrolador ESP32. A lógica do sistema avalia condições de umidade do solo, presença de nutrientes e nível de pH para acionar ou desligar a irrigação automaticamente.
+Este projeto tem como objetivo criar a modelagem de um banco de dados relacional voltado à automação agrícola com foco em sensores de monitoramento e irrigação. Utilizando conceitos de IoT, os dados coletados serão usados para melhorar o processo de tomada de decisão na irrigação de plantações, otimizando recursos como água e nutrientes.
 
-## 🔧 Componentes Simulados
-- ESP32
-- Sensor de Umidade (DHT22)
-- Sensor de pH (LDR simulando entrada analógica)
-- Botões representando sensores de:
-  - Fósforo (pino 2)
-  - Potássio (pino 4)
-- LED/Relé (simula bomba de irrigação)
+---
 
-## 🧠 Lógica de Funcionamento
-A irrigação será ativada se qualquer uma das seguintes condições for **verdadeira**:
-- Umidade do solo < 50%
-- Sem presença de fósforo (botão desligado)
-- Sem presença de potássio (botão desligado)
-- pH < 5.5 ou pH > 7.5
+## 👩‍💻 Alunos
 
-## 📄 Arquivos
-- `src/main.cpp`: Código-fonte do ESP32 com lógica comentada
-- `platformio.ini`: Arquivo de configuração do PlatformIO
-- `circuito_wokwi.png`: Imagem do circuito montado no Wokwi
-- `README.md`: Este documento
+- **Nome:** Amanda Silva  
+- **RM:** 553038
+- - **Nome:** Amanda Silva  
+- **RM:** 553038
+- - **Nome:** Amanda Silva  
+- **RM:** 553038
+- - **Nome:** Amanda Silva  
+- **RM:** 553038
+- - **Nome:** Amanda Silva  
+- **RM:** 553038
+- **Repositório GitHub:** [Cap-1---Construindo-uma-maquina-agricola](https://github.com/Amand95/Cap-1---Construindo-uma-m-quina-agr-cola)
 
-## ▶️ Simulação no Wokwi
-A simulação foi feita no [Wokwi](https://wokwi.com/), ambiente online para simular circuitos com ESP32.  
-A imagem abaixo mostra a montagem do circuito:
+---
 
-![Circuito Simulado no Wokwi](circuito_wokwi.png)
+## 🎯 Objetivo do Projeto
 
-## 🖥️ Código (resumo)
-```cpp
-if (umidade < 50 || !fosforo || !potassio || ph < 5.5 || ph > 7.5) {
-  ligarBomba = true;
-} else {
-  ligarBomba = false;
-}
+Desenvolver a modelagem lógica e física de um sistema de banco de dados relacional para apoiar uma solução agrícola inteligente baseada em sensores, com foco em:
+
+- Monitoramento ambiental em plantações (temperatura, umidade, luminosidade)
+- Controle de irrigação
+- Registro e análise de leituras para tomada de decisão
+
+---
+
+## 🧰 Tecnologias Utilizadas
+
+- 💾 Oracle SQL Developer Data Modeler (.dmd)
+- 🗃️ Modelo Relacional com tabelas e relacionamentos
+- 🧮 Modelagem com foco em relacionamentos 1:N e N:N
+- 🖼️ Diagrama DER (.png)
+- 📌 GitHub para versionamento
+
+---
+
+## 🧩 Modelagem do Banco de Dados
+
+O modelo proposto contempla as principais entidades e seus relacionamentos:
+
+| Entidade     | Descrição                                                                 |
+|--------------|---------------------------------------------------------------------------|
+| Sensor       | Representa o dispositivo físico instalado na plantação                    |
+| Leitura      | Registro dos dados captados pelos sensores                                |
+| Cultura      | Informações sobre o tipo de plantação (milho, soja, etc.)                 |
+| Irrigação    | Ações realizadas automaticamente ou manualmente para irrigação da cultura |
+| Ajuste       | Dados que indicam alterações manuais nos parâmetros de irrigação          |
+
+---
+
+## 🗺️ Diagrama Entidade-Relacionamento (DER)
+
+O DER abaixo foi construído com base nas entidades listadas e nos relacionamentos exigidos pela disciplina.
+
+### 📷 Visualização (PNG)
+![DER - FarmTech](./entrega1/diagrama_der.png)
+
+### 📦 Arquivo .dmd
+- [Clique aqui para baixar o arquivo .dmd](./entrega1/modelo_farmtech.dmd)
+
+> **Observação:** Ambos os arquivos estão disponíveis na pasta `/entrega1` deste repositório.
+
+---
+
+## 📌 Conclusão
+
+Este projeto representa a base de dados que irá apoiar um sistema completo de irrigação inteligente, promovendo sustentabilidade e uso eficiente da água nas lavouras. A estrutura proposta é escalável, podendo ser adaptada para diferentes culturas e integrações com dispositivos IoT em fases futuras.
+
+---
+
+
