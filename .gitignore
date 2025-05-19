@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite database files
+*.db
+
+# Environment variables
+.env
+.venv/
+env/
+venv/
+
+# VSCode settings
+.vscode/
+
+# PlatformIO / Wokwi build files
+.pio/
+.wokwi/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Python virtual environment folders
+env/
+venv/
+
+# MacOS files
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
