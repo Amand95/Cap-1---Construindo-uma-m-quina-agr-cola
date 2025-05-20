@@ -94,8 +94,6 @@ O modelo contempla as principais entidades e seus relacionamentos:
 ### 📷 Visualização
 ![DER - FarmTech](./entrega1/diagrama_der.png)
 
-### 📥 Arquivo .dmd
-- [Clique aqui para baixar o arquivo .dmd](./entrega1/modelo_farmtech.dmd)
 
 > Os arquivos estão localizados na pasta `/entrega1`.
 
