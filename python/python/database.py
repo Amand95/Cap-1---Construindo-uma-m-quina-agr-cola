@@ -1,37 +1,38 @@
 import sqlite3
 
-def conectar_banco(nome_banco='farmtech.db'):
-    """Estabelece conexão com o banco de dados SQLite."""
-    conexao = sqlite3.connect(nome_banco)
-    return conexao
+def create_connection(db_file):
+    """
+    Cria uma conexão com o banco de dados SQLite especificado por db_file.
+    Retorna o objeto conexão.
+    """
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+        print("Conexão com banco de dados SQLite estabelecida.")
+    except sqlite3.Error as e:
+        print(f"Erro ao conectar ao banco de dados: {e}")
+    return conn
 
-def criar_tabelas():
-    """Cria as tabelas necessárias no banco de dados."""
-    conexao = conectar_banco()
-    cursor = conexao.cursor()
+def create_tables(conn):
+    """
+    Cria as tabelas necessárias para armazenar as leituras dos sensores e o estado da bomba.
+    """
+    try:
+        cursor = conn.cursor()
 
-    # Exemplo de tabela para sensores (ajuste conforme seu projeto real)
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS sensores (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tipo TEXT NOT NULL,
-            localizacao TEXT NOT NULL
-        )
-    ''')
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS leituras (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            sensor_id INTEGER,
-            data_hora TEXT NOT NULL,
-            valor REAL,
-            FOREIGN KEY(sensor_id) REFERENCES sensores(id)
-        )
-    ''')
-
-    conexao.commit()
-    conexao.close()
-
-if __name__ == '__main__':
-    criar_tabelas()
-    print("Tabelas criadas com sucesso!")
+        # Tabela para armazenar as leituras dos sensores
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS leituras (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                umidade REAL NOT NULL,
+                ph REAL NOT NULL,
+                fosforo BOOLEAN NOT NULL,
+                potassio BOOLEAN NOT NULL,
+                estado_rele BOOLEAN NOT NULL,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        conn.commit()
+        print("Tabelas criadas com sucesso.")
+    except sqlite3.Error as e:
+        print(f"Erro ao criar tabelas: {e}")
