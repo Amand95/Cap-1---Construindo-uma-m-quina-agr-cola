@@ -1,4 +1,4 @@
-# Banco de Dados e Operações CRUD - FarmTech Solutions
+# Banco de Dados e Operações CRUD em Python
 
 Este diretório contém os scripts Python que simulam o armazenamento e manipulação dos dados coletados pelo sistema de sensores agrícolas da FarmTech Solutions.
 
@@ -7,27 +7,27 @@ Este diretório contém os scripts Python que simulam o armazenamento e manipula
 ## Estrutura dos Arquivos
 
 - `database.py`  
-  Define a criação e configuração da conexão com o banco de dados SQLite (simulado).
+  Cria e configura a conexão com o banco de dados SQLite (simulado).
 
 - `crud.py`  
   Implementa as operações CRUD (Create, Read, Update, Delete) para as tabelas do banco.
 
 - `main.py`  
-  Script principal que exemplifica o uso das operações CRUD, simulando a inserção e manipulação de dados dos sensores.
+  Script principal que exemplifica o uso das operações CRUD, simulando a inserção e manipulação dos dados dos sensores.
 
 ---
 
-## Modelo de Dados
+## Banco de Dados
 
-O banco de dados armazena informações referentes a sensores que monitoram:
+O banco de dados simula o armazenamento dos dados dos sensores:
 
-- Fósforo (P) — valor booleano (True/False) representando presença ou ausência.
-- Potássio (K) — valor booleano.
-- pH do solo — valor analógico (float) representando o nível de acidez/alkalinidade.
-- Umidade do solo — valor analógico (float) em porcentagem.
-- Status da bomba de irrigação — booleano indicando se a bomba está ligada (True) ou desligada (False).
+- Fósforo (P) - valores booleanos (presença/ausência)
+- Potássio (K) - valores booleanos
+- pH do solo - valor analógico (float)
+- Umidade do solo - valor analógico (float)
+- Status da bomba de irrigação (relé) - ligado ou desligado (booleano)
 
-Esses dados simulam o modelo ER criado na fase 2 do projeto.
+A estrutura das tabelas segue o modelo ER definido na Fase 2 do projeto.
 
 ---
 
@@ -35,13 +35,12 @@ Esses dados simulam o modelo ER criado na fase 2 do projeto.
 
 ### 1. Inserção (Create)
 
-Insere uma nova leitura dos sensores no banco.
-
-Exemplo de uso:
+Exemplo: inserir uma nova leitura de sensor no banco.
 
 ```python
 from crud import insert_sensor_data
 
+# Exemplo de dados simulados
 data = {
     'fosforo': True,
     'potassio': False,
@@ -51,4 +50,3 @@ data = {
 }
 
 insert_sensor_data(data)
-print("Dados inseridos com sucesso!")
