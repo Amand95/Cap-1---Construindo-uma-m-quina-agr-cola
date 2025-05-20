@@ -1,55 +1,36 @@
-def inserir_leitura(conn, umidade, ph, fosforo, potassio, estado_rele):
-    """
-    Insere uma nova leitura na tabela leituras.
-    """
+def inserir_sensor(conn, tipo, valor):
     try:
         cursor = conn.cursor()
-        cursor.execute('''
-            INSERT INTO leituras (umidade, ph, fosforo, potassio, estado_rele)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (umidade, ph, fosforo, potassio, estado_rele))
+        cursor.execute("INSERT INTO sensores (tipo, valor) VALUES (?, ?)", (tipo, valor))
         conn.commit()
-        print("Leitura inserida com sucesso.")
+        print("Dados inseridos com sucesso.")
     except Exception as e:
-        print(f"Erro ao inserir leitura: {e}")
+        print(f"Erro ao inserir dados: {e}")
 
-def consultar_leituras(conn):
-    """
-    Retorna todas as leituras armazenadas no banco.
-    """
+def buscar_sensores(conn):
     try:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM leituras")
+        cursor.execute("SELECT * FROM sensores")
         rows = cursor.fetchall()
         return rows
     except Exception as e:
-        print(f"Erro ao consultar leituras: {e}")
+        print(f"Erro ao buscar dados: {e}")
         return []
 
-def atualizar_leitura(conn, id, umidade, ph, fosforo, potassio, estado_rele):
-    """
-    Atualiza uma leitura existente pelo seu id.
-    """
+def atualizar_sensor(conn, sensor_id, novo_valor):
     try:
         cursor = conn.cursor()
-        cursor.execute('''
-            UPDATE leituras
-            SET umidade = ?, ph = ?, fosforo = ?, potassio = ?, estado_rele = ?
-            WHERE id = ?
-        ''', (umidade, ph, fosforo, potassio, estado_rele, id))
+        cursor.execute("UPDATE sensores SET valor = ? WHERE id = ?", (novo_valor, sensor_id))
         conn.commit()
-        print(f"Leitura de id {id} atualizada com sucesso.")
+        print("Dados atualizados com sucesso.")
     except Exception as e:
-        print(f"Erro ao atualizar leitura: {e}")
+        print(f"Erro ao atualizar dados: {e}")
 
-def deletar_leitura(conn, id):
-    """
-    Remove uma leitura pelo seu id.
-    """
+def deletar_sensor(conn, sensor_id):
     try:
         cursor = conn.cursor()
-        cursor.execute('DELETE FROM leituras WHERE id = ?', (id,))
+        cursor.execute("DELETE FROM sensores WHERE id = ?", (sensor_id,))
         conn.commit()
-        print(f"Leitura de id {id} deletada com sucesso.")
+        print("Dados deletados com sucesso.")
     except Exception as e:
-        print(f"Erro ao deletar leitura: {e}")
+        print(f"Erro ao deletar dados: {e}")
