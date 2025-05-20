@@ -1,6 +1,6 @@
-# Banco de Dados e Operações CRUD em Python
+# Banco de Dados e Operações CRUD - FarmTech Solutions
 
-Este diretório contém scripts Python que simulam o armazenamento e manipulação dos dados coletados pelo sistema de sensores agrícolas da FarmTech Solutions.
+Este diretório contém os scripts Python que simulam o armazenamento e manipulação dos dados coletados pelo sistema de sensores agrícolas da FarmTech Solutions.
 
 ---
 
@@ -17,17 +17,17 @@ Este diretório contém scripts Python que simulam o armazenamento e manipulaç�
 
 ---
 
-## Banco de Dados
+## Modelo de Dados
 
-O banco de dados simula o armazenamento dos dados dos sensores de:
+O banco de dados armazena informações referentes a sensores que monitoram:
 
-- Fósforo (P) - representado por valores booleanos
-- Potássio (K) - representado por valores booleanos
-- pH do solo - valor analógico (float)
-- Umidade do solo - valor analógico (float)
-- Status da bomba de irrigação (relé) - ligado ou desligado (booleano)
+- Fósforo (P) — valor booleano (True/False) representando presença ou ausência.
+- Potássio (K) — valor booleano.
+- pH do solo — valor analógico (float) representando o nível de acidez/alkalinidade.
+- Umidade do solo — valor analógico (float) em porcentagem.
+- Status da bomba de irrigação — booleano indicando se a bomba está ligada (True) ou desligada (False).
 
-A estrutura das tabelas segue o modelo ER definido na fase 2 do projeto.
+Esses dados simulam o modelo ER criado na fase 2 do projeto.
 
 ---
 
@@ -35,12 +35,13 @@ A estrutura das tabelas segue o modelo ER definido na fase 2 do projeto.
 
 ### 1. Inserção (Create)
 
-Exemplo: inserir uma nova leitura de sensor no banco.
+Insere uma nova leitura dos sensores no banco.
+
+Exemplo de uso:
 
 ```python
 from crud import insert_sensor_data
 
-# Exemplo de dados simulados
 data = {
     'fosforo': True,
     'potassio': False,
@@ -50,3 +51,4 @@ data = {
 }
 
 insert_sensor_data(data)
+print("Dados inseridos com sucesso!")
