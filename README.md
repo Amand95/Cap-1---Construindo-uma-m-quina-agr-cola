@@ -31,6 +31,16 @@ Além disso, o projeto visa:
 - LED (indicador de status)
 
 ---
+## 🔌 Circuito Simulado no Wokwi
+
+Aqui está o esquema do circuito montado para o sistema de irrigação inteligente:
+
+![Circuito FarmTech](https://github.com/Amand95/Cap-1---Construindo-uma-m-quina-agr-cola/blob/00773315a4dee11d500ba720c948282f59e82804/circuito_farmtech.png)
+
+Você também pode conferir e interagir com o projeto diretamente no Wokwi:  
+🔗 [Projeto no Wokwi](https://wokwi.com/projects/431474252943221761)
+
+---
 
 ## 💧 Lógica de Irrigação Inteligente
 
