@@ -60,7 +60,7 @@ A lógica do sistema decide o acionamento da bomba com base nas seguintes condi�
 
 O diagrama abaixo representa o fluxo geral de dados entre os sensores, ESP32, lógica de controle, banco de dados e dashboards:
 
-![Arquitetura](docs/arquitetura.png)
+![Arquitetura](https://github.com/Amand95/Cap-1---Construindo-uma-m-quina-agr-cola/blob/2fbf8aa4b38f2e03a06a3a0e23174a6163d9dff9/Diagrama%20de%20Sistema%20de%20Irriga%C3%A7%C3%A3o%20Inteligente.png)
 
 ---
 
