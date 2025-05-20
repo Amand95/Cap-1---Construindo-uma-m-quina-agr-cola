@@ -1,97 +1,45 @@
-import sqlite3
-import time
-import random
-import logging
+from database import create_connection, create_tables
+from crud import inserir_leitura, consultar_leituras, atualizar_leitura, deletar_leitura
 
-class FarmTechSimulator:
-    def __init__(self, db_name='farmtech_data.db', intervalo=5,
-                 ph_min=6.0, ph_max=8.0, umidade_limite=40.0):
-        """
-        Inicializa o simulador com parâmetros configuráveis.
-        """
-        self.db_name = db_name
-        self.intervalo = intervalo
-        self.ph_min = ph_min
-        self.ph_max = ph_max
-        self.umidade_limite = umidade_limite
-        
-        self.conn = sqlite3.connect(self.db_name)
-        self.cursor = self.conn.cursor()
-        self._criar_tabela()
-        
-        logging.basicConfig(level=logging.INFO,
-                            format='[%(asctime)s] %(message)s',
-                            datefmt='%Y-%m-%d %H:%M:%S')
-        logging.info("Simulador iniciado.")
+def main():
+    # Caminho do banco SQLite (arquivo local)
+    database = "sensores.db"
 
-    def _criar_tabela(self):
-        """Cria a tabela leituras no banco, se não existir."""
-        self.cursor.execute('''
-        CREATE TABLE IF NOT EXISTS leituras (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TEXT,
-            fosforo BOOLEAN,
-            potassio BOOLEAN,
-            ph REAL,
-            umidade REAL,
-            bomba_ligada BOOLEAN
-        )
-        ''')
-        self.conn.commit()
+    # Cria conexão com o banco
+    conn = create_connection(database)
 
-    def simular_leitura(self):
-        """
-        Simula uma leitura dos sensores.
-        Retorna uma tupla (fosforo, potassio, ph, umidade, bomba_ligada).
-        """
-        fosforo = random.choice([True, False])
-        potassio = random.choice([True, False])
-        ph = round(random.uniform(5.5, 8.5), 2)
-        umidade = round(random.uniform(20, 60), 2)
-        bomba_ligada = (
-            fosforo and potassio and
-            self.ph_min <= ph <= self.ph_max and
-            umidade < self.umidade_limite
-        )
-        return fosforo, potassio, ph, umidade, bomba_ligada
+    if conn is not None:
+        # Cria as tabelas, caso não existam
+        create_tables(conn)
 
-    def salvar_leitura(self, fosforo, potassio, ph, umidade, bomba_ligada):
-        """
-        Salva uma leitura no banco de dados.
-        """
-        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-        self.cursor.execute('''
-        INSERT INTO leituras (timestamp, fosforo, potassio, ph, umidade, bomba_ligada)
-        VALUES (?, ?, ?, ?, ?, ?)
-        ''', (timestamp, fosforo, potassio, ph, umidade, bomba_ligada))
-        self.conn.commit()
-        logging.info(f"Dados salvos: P={fosforo}, K={potassio}, pH={ph}, Umidade={umidade}, Bomba={bomba_ligada}")
+        # Simula inserção de dados recebidos do monitor serial
+        inserir_leitura(conn, umidade=45.6, ph=6.8, fosforo=True, potassio=False, estado_rele=True)
+        inserir_leitura(conn, umidade=50.2, ph=7.1, fosforo=False, potassio=True, estado_rele=False)
 
-    def consultar_leituras(self, limite=10):
-        """
-        Consulta as últimas leituras salvas.
-        """
-        self.cursor.execute('''
-        SELECT * FROM leituras ORDER BY id DESC LIMIT ?
-        ''', (limite,))
-        return self.cursor.fetchall()
+        # Consulta e imprime todas as leituras
+        leituras = consultar_leituras(conn)
+        print("\nLeituras armazenadas:")
+        for leitura in leituras:
+            print(leitura)
 
-    def run(self):
-        """
-        Executa o loop principal da simulação.
-        """
-        try:
-            while True:
-                dados = self.simular_leitura()
-                self.salvar_leitura(*dados)
-                time.sleep(self.intervalo)
-        except KeyboardInterrupt:
-            logging.info("Simulação encerrada pelo usuário.")
-        finally:
-            self.conn.close()
-            logging.info("Conexão com banco de dados fechada.")
+        # Atualiza um registro específico (exemplo id = 1)
+        atualizar_leitura(conn, 1, umidade=47.0, ph=6.9, fosforo=True, potassio=True, estado_rele=False)
 
-if __name__ == '__main__':
-    sim = FarmTechSimulator()
-    sim.run()
+        # Deleta um registro (exemplo id = 2)
+        deletar_leitura(conn, 2)
+
+        # Consulta novamente após as operações
+        leituras_atualizadas = consultar_leituras(conn)
+        print("\nLeituras após atualizações:")
+        for leitura in leituras_atualizadas:
+            print(leitura)
+
+        # Fecha a conexão ao final
+        conn.close()
+    else:
+        print("Erro! Não foi possível criar conexão com o banco de dados.")
+
+if __name__ == "__main__":
+    main()
+
 
