@@ -92,7 +92,7 @@ O modelo contempla as principais entidades e seus relacionamentos:
 ## 🗺️ Diagrama Entidade-Relacionamento (DER)
 
 ### 📷 Visualização
-![DER - FarmTech](./entrega1/diagrama_der.png)
+![DER - FarmTech](https://github.com/Amand95/Cap-1---Construindo-uma-m-quina-agr-cola/blob/3007e6787a8ed995ea9bda8b9bfb4c4e308bf192/Diagrama%20DER.jpeg)
 
 ---
 
